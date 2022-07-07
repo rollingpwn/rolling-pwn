@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://www.hertzbleed.com/ -->
+<html lang="en">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="images/1.png">
+    <title>Rolling PWN</title>
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+      <header id="top">
+        <h1 class="pMain">Rolling Pwn Attack</h1>
+		<br/>
+        <div class="logo"></div>
+      </header>
+
+     <br/>
+	 <br/>
+
+      <section>
+	  <br/>
+		<div class="quarter noBorderOnLeft">
+		<h2 id="research-paper"  class="pPress">INTRODUCTION</h2>
+        <p class="pfont">
+		 Modern vehicles are often equipped with a remote keyless entry system. These RKE systems allow unlocking or starting the vehicle remotely. The goal of our research was to evaluate the resistance of a modern-day RKE system. Our research disclosed a Rolling-PWN attack vulnerability affects all Honda vehicles currently existing on the market (From the Year 2012 up to the Year 2022). This weakness allows anyone permanently opens the car door or even start the car engine from a long distance.
+		 <br/>
+		 <br/>
+		The Rolling-PWN bug is a serious vulnerability. We found it in a vulnerable version of the rolling codes mechanism, which implemented in huge amounts of Honda vehicles. A rolling code system in keyless entry systems is to prevent replay attack. After each keyfob button pressed the rolling codes synchronizing counter increased. However, the vehicle receiver will accept a sliding window of codes, to avoid accidental key pressed by design. By sending the commands in a consecutive sequence to the Honda vehicles, it will be resynchronizing the counter. Once counter resynced, commands from the previous cycle of the counter reworked again. Therefore, those commands can be used later to unlock the car at will.
+		</p>
+		
+		
+		</div>
+		  <div class="quarter noBorderOnLeft">
+          <h2 id="research-paper"  class="pPress">QUESTIONS AND ANSWERS</h2>
+		  <div>
+		  <p class="ptitle"> 0: Please show me Rolling-PWN in action?<br/></p>
+          <p class="pfont">
+			We have successfully tested the 10 most popular models of Honda vehicles from the Year 2012 up to the Year 2022 from the attacker's perspective. Therefore, we strongly believe the vulnerability affects all Honda vehicles currently existing on the market.
+			<br/>
+			<br/>
+			&nbsp;&nbsp;· Honda Civic 2012<br/>
+			
+			&nbsp;&nbsp;· Honda X-RV 2018<br/>
+			
+			&nbsp;&nbsp;· Honda C-RV 2020<br/>
+
+			&nbsp;&nbsp;· Honda Accord 2020<br/>
+
+			&nbsp;&nbsp;· Honda Odyssey 2020<br/>
+			
+			&nbsp;&nbsp;· Honda Inspire 2021<br/>
+			
+			
+			&nbsp;&nbsp;· Honda Fit 2022<br/>
+
+			&nbsp;&nbsp;· Honda Civic 2022<br/>
+			
+			&nbsp;&nbsp;· Honda VE-1 2022<br/>
+
+			&nbsp;&nbsp;· Honda Breeze 2022<br/>
+
+			<br/>
+
+			Please see the demo videos down below. Note that, even the keyfob pressed multiple times, we are still able to open the door repeatedly. Meaning the rolling code mechanism has been pwned.
+		  </p>
+			<video width="320" height="200" controls="controls" class="pVideo">
+			  <source src="video/Demo-Video-CRV.mp4" type="video/mp4">
+			</video>
+			<video width="320" height="200" controls="controls" class="pVideo">
+				<source src="video/Demo-Video-Accord.mp4" type="video/mp4">
+			</video>
+			<video width="320" height="200" controls>
+			  <source src="video/Demo-Video-Odyssey.mp4" type="video/mp4" class="pVideo">
+			</video>
+			<video width="320" height="200" controls>
+				<source src="video/Demo-Video-XRV.mp4" type="video/mp4" class="pVideo">
+			</video>
+			<video width="320" height="240" controls>
+				<source src="video/Demo-Video-Inspire.mp4" type="video/mp4">
+			</video>
+		  
+		  </div>
+		  <div>
+		  <br/>
+		  <p class="ptitle"> 1: Why it is called the Rolling-PWN, not a Honda-PWN?<br/></p>
+          <p class="pfont">
+			Because this bug may exist in other brands of vehicles too ;)
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 2: Who found the Rolling-PWN Bug?<br/></p>
+          <p class="pfont">
+			A team of security Researchers Kevin2600 and Wesley Li from Star-V Lab independently discovered this bug.
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 3: Am I affected by the bug?<br/></p>
+          <p class="pfont">
+			As long as the vulnerable version of Honda vehicles is in use, it can be abused.
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 4: Is there an assigned CVE for Rolling-PWN? <br/></p>
+          <p class="pfont" color="red">
+			CVE-2021-46145 is the official reference to this  bug. CVE is the Standard for Information Security Vulnerability Names maintained by MITRE.
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 5: Can I detect if someone has exploited this against me? <br/></p>
+          <p class="pfont">
+			Probably not. The exploitation does not leave any traces in traditional log files. But considering the ease of exploitation and attacks leaving no trace, this threat should take seriously.		  
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 6: Is this a Honda vehicle only Bug? <br/></p>
+          <p class="pfont">
+			No. Although the main targets for the research is Honda Automobiles. But we have leads to show the impact of this vulnerability also applies to other car manufacturers. We will release more details in the future.		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 7: Is the risk real? <br/></p>
+          <p class="pfont">
+			We have successfully tested the latest models of Honda vehicles. And we strongly believe the vulnerability affects all Honda vehicles currently existing on the market. Please see the field test video down below.		  </p>
+		  <video width="640" height="320" controls>
+				<source src="video/Demo-Video-Field-Test.mp4" type="video/mp4">
+		  </video>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 8: What makes this Bug unique or what's the Difference between CVE-2022-27254 and CVE-2019-20626? <br/></p>
+          <p class="pfont">
+			During the research, we noticed the other <a href="https://github.com/nonamecoder/CVE-2022-27254">researchers</a>  
+			have found similar vulnerabilities in Honda vehicles. Based on the description "The remote keyless system on Honda HR-V 2017 vehicles sends the same RF signal for each door-open request, which might allow a replay attack". 
+			What they found is a FIXED CODE vulnerability, meaning where an attacker can records the transmission in advance and replays it later to cause the car door to lock or unlock.
+			<br/>
+			<br/>
+			However, most modern vehicles includes Honda Automobiles implemented the proprietary rolling codes mechanism, which exactly prevents fixed code replay attack like CVE-2022-27254. 
+			The bug we discovered regard to the design flaw of rolling codes mechanism from Honda Motors. Which need to take very seriously.
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 9: Is there more technical information about Rolling-PWN? <br/></p>
+          <p class="pfont">
+			You can follow the author on Twitter [@kevin2600]. However, we will not be releasing any tools required to go out and steal the affected vehicles. 
+			At a later stage, we will release technical information in order to encourage more researchers to get involved in the car security research.		  
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 10: How to patch the modern automobile for Rolling-PWN bug like this?<br/></p>
+          <p class="pfont">
+		    The common solution requires us to bring the vehicle back to a local dealership as a recall. But the recommended mitigation strategy is to upgrade the vulnerable BCM firmware through Over-the-Air (OTA) Updates if feasible. However, some old vehicles may not support OTA.
+		  </p>
+		  </div>
+		  <br/>
+		  <div>
+		  <p class="ptitle"> 11: What does Honda think about this Rolling-PWN Bug? <br/></p>
+          <p class="pfont">
+			We have searched through the Honda official website, but we can not find any contact info for report Vulnerability. Seems Honda motor DOES NOT have a department to deal with security related issue for their products. And a person who works at HONDA has told us "The best way to report the Honda vulnerability is to contact customer service".
+			Therefore, we filed a report to Honda Customer service, but we have not get any reply yet.
+			<br/>
+			<br/>
+			In addition, we found an article from <a href="https://www.bleepingcomputer.com/news/security/honda-bug-lets-a-hacker-unlock-and-start-your-car-via-replay-attack">Bleeping-Computer</a>, which Seems that Honda does not care about security issues anyway :(	  
+		  </p>
+		  </div>
+		  <br/>
+		  <div class="footer-PCI0"></div>
+        </div>
+		
+
+      </section>
+	   <br/>
+	   <br/>
+      <div class="footer-logo"></div>
+	  
+
+      <footer>
+        <p class="text-muted">Rolling Pwn</p>
+      </footer>
+		
+  
+
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+      <div class="xl-chrome-ext-bar__logo"></div>
+    </div></body></html>

